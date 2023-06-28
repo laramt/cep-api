@@ -19,12 +19,12 @@ public class CepService {
         return client.findByCep(cep);
     }
 
-     public CepResponse findByAddress(String uf, String localidade, String logradouro) {
-        List<CepResponse> responses = client.findByAddress(uf, localidade, logradouro);
-        if (responses != null && !responses.isEmpty()) {
-            return responses.get(0);
-        }
+    public List<CepResponse> findByAddress(String uf, String localidade, String logradouro) {
+        return client.findByAddress(uf, encodePathSegment(localidade), logradouro);
+    }
 
-        return null; // Return null if no response or empty response array
+    private String encodePathSegment(String segment) {
+        return segment.replaceAll(" ", "%20")
+                .replaceAll("\\+", "%20");
     }
 }

@@ -14,6 +14,6 @@ public interface ViaCepClient {
 
    @GetMapping("/{uf}/{cidade}/{logradouro}/json")
     List<CepResponse> findByAddress(@PathVariable(value = "uf") String uf,
-                                    @PathVariable(value = "cidade") String cidade,
+                                    @PathVariable(value = "cidade")  String cidade,
                                     @PathVariable(value = "logradouro") String logradouro);
 }

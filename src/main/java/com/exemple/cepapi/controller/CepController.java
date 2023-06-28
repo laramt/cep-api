@@ -1,5 +1,7 @@
 package com.exemple.cepapi.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,10 +26,10 @@ public class CepController {
     }
 
     @GetMapping("{uf}/{localidade}/{logradouro}")
-    public ResponseEntity<CepResponse> findByAdress(@PathVariable(value = "uf") String uf, 
-                                                    @PathVariable(value = "localidade") String localidade, 
-                                                    @PathVariable(value = "logradouro") String logradouro){
-        return ResponseEntity.ok().body(service.findByAddress(uf, localidade, logradouro));
+    public ResponseEntity<List<CepResponse>> findByAddress(@PathVariable(value = "uf") String uf, 
+                                                        @PathVariable(value = "localidade") String localidade, 
+                                                        @PathVariable(value = "logradouro") String logradouro){
+        List<CepResponse> cepResponses = service.findByAddress(uf, localidade, logradouro);
+        return ResponseEntity.ok().body(cepResponses);
     }
-
 }
