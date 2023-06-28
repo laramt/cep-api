@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.exemple.cepapi.client.CepResponse;
 import com.exemple.cepapi.client.ViaCepClient;
+import com.exemple.cepapi.exceptions.InvalidInputException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,18 +28,18 @@ public class CepService {
 
     private void validateCep(String cep) {
         if (cep == null || cep.isEmpty() || cep.isBlank()) {
-            throw new RuntimeException("Cep não pode ser nulo ou vazio.");
+            throw new InvalidInputException("Cep não pode ser nulo ou vazio.");
         }
 
         if (cep.length() != 8) {
-            throw new RuntimeException("Cep deve conter 8 dígitos.");
+            throw new InvalidInputException("Cep deve conter 8 dígitos.");
         }
 
         if (!Pattern.matches("\\b\\d{8}\\b", cep)) {
-            throw new RuntimeException("Cep não pode conter letras, espaços ou caracteres especiais.");
+            throw new InvalidInputException("Cep não pode conter letras, espaços ou caracteres especiais.");
         }
     }
-    
+
     private String encodePathSegment(String segment) {
         return segment.replaceAll(" ", "%20")
                 .replaceAll("\\+", "%20");
