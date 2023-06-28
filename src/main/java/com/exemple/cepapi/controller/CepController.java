@@ -23,4 +23,11 @@ public class CepController {
         return ResponseEntity.ok().body(service.findByCep(cep));
     }
 
+    @GetMapping("{uf}/{localidade}/{logradouro}")
+    public ResponseEntity<CepResponse> findByAdress(@PathVariable(value = "uf") String uf, 
+                                                    @PathVariable(value = "localidade") String localidade, 
+                                                    @PathVariable(value = "logradouro") String logradouro){
+        return ResponseEntity.ok().body(service.findByAddress(uf, localidade, logradouro));
+    }
+
 }
