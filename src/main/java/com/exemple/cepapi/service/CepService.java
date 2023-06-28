@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
-import com.exemple.cepapi.client.CepResponse;
 import com.exemple.cepapi.client.ViaCepClient;
+import com.exemple.cepapi.client.response.CepResponse;
 import com.exemple.cepapi.exceptions.InvalidInputException;
 
 import lombok.RequiredArgsConstructor;

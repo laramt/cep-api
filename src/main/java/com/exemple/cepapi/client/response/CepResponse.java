@@ -1,4 +1,4 @@
-package com.exemple.cepapi.client;
+package com.exemple.cepapi.client.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

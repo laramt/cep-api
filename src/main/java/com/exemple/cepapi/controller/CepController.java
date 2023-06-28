@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exemple.cepapi.client.CepResponse;
+import com.exemple.cepapi.client.response.CepResponse;
 import com.exemple.cepapi.service.CepService;
 
 import lombok.RequiredArgsConstructor;
