@@ -57,16 +57,16 @@ git clone https://github.com/laramt/cep-api.git
 Esta API possui dois endpoints disponíveis:
 
 - `GET /cep/{cep}`: Busca informações por um CEP expecifico.
-- `GET /endereco/`: Busca informações de endereço com base nos parâmetros informados (UF, localidade e logradouro. Os parâmetros podem ser passados como query parameters na URL.
+- `GET /endereco/{uf}/{localidade}/{logradouro}`: Busca informações de endereço com base nos parâmetros informados (UF, localidade e logradouro)
 
 Exemplo de uso:
 
 ```http
 GET /cep/01001000
 
-GET /endereco/?uf=SP&localidade=São+Paulo&logradouro=Avenida+Paulista
+GET /endereco/SP/São+Paulo/Avenida+Paulista
 
-GET /endereco/?uf=SP&localidade=São%20Paulo&logradouro=Avenida%20Paulista
+GET /endereco/SP/São%20Paulo/Avenida%20Paulista
 ```
 
 A resposta será um objeto JSON contendo as informações do endereço.
