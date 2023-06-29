@@ -11,14 +11,6 @@ Este é um repositório para uma API Java que permite buscar informações de CE
   </a>
 </p>
 
-## Sumário
-
-- [Introdução](#introdução)
-- [Funcionalidades](#funcionalidades)
-- [Instalação](#instalação)
-- [Como usar](#como-usar)
-- [Contato](#contato)
-
 ## Introdução
 
 A ViaCEP Java API é uma aplicação Java que permite buscar informações de CEP ou endereço utilizando o serviço gratuito ViaCEP. Ela utiliza o Spring Framework para criar uma API RESTful simples e fácil de usar.
