@@ -26,6 +26,7 @@ public class CepServiceImpl implements CepService{
 
     @Override
     public List<CepResponse> findByAddress(String uf, String localidade, String logradouro) {
+        validateAdress(uf, localidade, logradouro);
         return client.findByAddress(uf, encodePathSegment(localidade), logradouro);
     }
 
@@ -40,6 +41,16 @@ public class CepServiceImpl implements CepService{
 
         if (!Pattern.matches("\\b\\d{8}\\b", cep)) {
             throw new InvalidInputException("Cep não pode conter letras, espaços ou caracteres especiais.");
+        }
+    }
+
+    private void validateAdress(String uf, String localidade, String logradouro) {
+        if(uf == null || localidade == null || logradouro == null){
+            throw new InvalidInputException("Nenhum dos campos pode ser nulo.");
+        }
+
+        if(localidade.length() < 3 || logradouro.length() < 3){
+            throw new InvalidInputException("Localidade e logradouro devem ter no minimo três caracteres.");
         }
     }
 
