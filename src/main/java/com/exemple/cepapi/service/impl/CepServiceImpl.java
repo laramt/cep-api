@@ -18,11 +18,13 @@ public class CepServiceImpl implements CepService{
 
     private final ViaCepClient client;
     
+    @Override
     public CepResponse findByCep(String cep) {
         validateCep(cep);
         return client.findByCep(cep);
     }
 
+    @Override
     public List<CepResponse> findByAddress(String uf, String localidade, String logradouro) {
         return client.findByAddress(uf, encodePathSegment(localidade), logradouro);
     }
