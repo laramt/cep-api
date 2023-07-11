@@ -20,18 +20,8 @@ public class CepServiceImpl implements CepService{
     
     @Override
     public CepResponse findByCep(String cep) {
-        validateCep(cep);
-        return client.findByCep(cep);
-    }
 
-    @Override
-    public List<CepResponse> findByAddress(String uf, String localidade, String logradouro) {
-        validateAdress(uf, localidade, logradouro);
-        return client.findByAddress(uf, encodePathSegment(localidade), logradouro);
-    }
-
-    private void validateCep(String cep) {
-        if (cep == null || cep.isEmpty() || cep.isBlank()) {
+         if (cep == null || cep.isEmpty() || cep.isBlank()) {
             throw new InvalidInputException("Cep não pode ser nulo ou vazio.");
         }
 
@@ -42,20 +32,23 @@ public class CepServiceImpl implements CepService{
         if (!Pattern.matches("\\b\\d{8}\\b", cep)) {
             throw new InvalidInputException("Cep não pode conter letras, espaços ou caracteres especiais.");
         }
+        return client.findByCep(cep);
     }
 
-    private void validateAdress(String uf, String localidade, String logradouro) {
-        if(uf == null || localidade == null || logradouro == null){
+    @Override
+    public List<CepResponse> findByAddress(String uf, String localidade, String logradouro) {
+
+         if(uf == null || localidade == null || logradouro == null){
             throw new InvalidInputException("Nenhum dos campos pode ser nulo.");
         }
 
         if(localidade.length() < 3 || logradouro.length() < 3){
             throw new InvalidInputException("Localidade e logradouro devem ter no minimo três caracteres.");
         }
+
+        localidade = localidade.replaceAll(" ", "%20").replaceAll("\\+", "%20");
+
+        return client.findByAddress(uf, localidade, logradouro);
     }
 
-    private String encodePathSegment(String segment) {
-        return segment.replaceAll(" ", "%20")
-                .replaceAll("\\+", "%20");
-    }
 }
